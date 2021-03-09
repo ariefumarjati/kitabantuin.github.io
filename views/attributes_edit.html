@@ -1,0 +1,79 @@
+<%- include('./layout/header.html'); %>
+
+<!-- PAGES -->
+    <!-- TITLE PAGE -->
+    <div class="bg-gray-800 pt-3">
+        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+            <h3 class="font-bold pl-2"><%= title %></h3>
+        </div>
+    </div>
+    
+    <!-- TABLE -->
+    <div class="mx-12 mt-12">
+
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+            Edit Atribut
+          </label>
+
+        <form action="/attributes/<%= JSON.stringify(attribute.id) %>/edit/submit" method="post">
+            <div class="flex w-1/3">
+                <input name="name" class="shadow appearance-none border rounded w-full mr-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="<%= JSON.parse(JSON.stringify(attribute.name)) %>" id="name_attribute" type="text" placeholder="<%= JSON.parse(JSON.stringify(attribute.name)) %>">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Edit
+                  </button>
+            </div>
+        </form>
+
+        <label class="block text-gray-700 text-sm font-bold mt-4 mb-2" for="username">
+          Atribut Saat Ini
+        </label>
+
+            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+              <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                  <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                      <th class="px-4 py-3">NO</th>
+                      <th class="px-4 py-3">Nama Attribute</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                    <tr class="text-gray-700 dark:text-gray-400">
+
+                    <!-- LOOPING ISI ATTRIBUTES -->
+                    <% attributes.forEach(function(item, index){ %>
+
+                      <!-- ID -->
+                      <td class="px-4 py-3 text-sm">
+                        <%= index+1 %>
+                      </td>
+                      
+                      <!-- NAMA ATTRIBUTE -->
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <div>
+                            <% if (item.editmode) { %>
+                              <input class="font-semibold" value="<%= item.name %>"></input>
+                              <% } else { %>
+                                <p class="font-semibold"><%= item.name %></p>
+                            <% } %>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                 
+                    <% }) %>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <script>
+
+            </script>
+
+    </div>
+
+<%- include('./layout/footer.html'); %>

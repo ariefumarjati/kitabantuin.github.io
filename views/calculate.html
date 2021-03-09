@@ -1,0 +1,59 @@
+<%- include('./layout/header.html'); %>
+
+<!-- PAGES -->
+    <!-- TITLE PAGE -->
+    <div class="bg-gray-800 pt-3">
+        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+            <h3 class="font-bold pl-2"><%= title %></h3>
+        </div>
+    </div>
+    
+    <!-- TABLE -->
+    <div class="mx-12 mt-12">
+
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+            Tambah Data Training Baru
+          </label>
+
+          <div class="flex w-1/2">
+              <a href="/training/add" class="mr-4">
+                  <div>
+                      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Tambah Data
+                      </button>
+                  </div>
+              </a>
+      
+              <form class="mr-4" action="/training/add" method="post">
+                <div>
+                    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                      Import Data
+                    </button>
+                </div>
+              </form>
+          </div>
+
+        <p class="mb-4 mt-2">NB : Pastikan data training yang diinput sesuai dengan urutan</p>
+
+
+
+    </div>
+
+    <script>
+      // DELETE ATTRIBUTE
+      function deleteAttribute (id) {
+        
+        fetch(`/attributes/${id}/delete`, 
+          {
+            method: 'DELETE'
+          }
+        )
+        .then(result => {
+          location.reload();
+          return false;
+        });
+      }
+      
+    </script>
+
+<%- include('./layout/footer.html'); %>
